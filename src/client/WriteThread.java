@@ -39,12 +39,7 @@ public class WriteThread extends Thread {
                 text = bufferRead.readLine();
                 writer.println(text);
 
-            } while (!text.equals("bye"));
-        } catch(IOException ex) {
-            ex.printStackTrace();
-        }
-
-        try {
+            } while (!text.equals("/EXIT"));
             socket.close();
         } catch (IOException ex) {
 

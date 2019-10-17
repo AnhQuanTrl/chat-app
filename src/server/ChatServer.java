@@ -55,11 +55,11 @@ public class ChatServer {
         userNames.add(userName);
     }
 
-    void removeUser(String userName, ClientThread userThread) {
-        boolean removed = userNames.remove(userName);
+    void removeUser(ClientThread userThread) {
+        boolean removed = userNames.remove(userThread.getUserName());
         if (removed) {
             clientThreads.remove(userThread);
-            System.out.println("The user " + userName + " quitted");
+            System.out.println("The user " + userThread.getUserName() + " quitted");
         }
     }
 
@@ -69,5 +69,15 @@ public class ChatServer {
 
     boolean hasUsers() {
         return !this.userNames.isEmpty();
+    }
+
+    ClientThread findThread(String userName) {
+        for (ClientThread user : clientThreads) {
+            System.out.println(user.getUserName());
+            if (user.getUserName().equals(userName)) {
+                return user;
+            }
+        }
+        return null;
     }
 }
